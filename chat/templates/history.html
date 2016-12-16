@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat ~ History [{{ room.name | default:'None' }}]</title>
+</head>
+<body>
+    <a href="{% url 'profile' %}">Profile</a>
+    <a href="{% url 'user_logout' %}">Logout</a>
+    {% if not room %}
+        <h3>There is no such room</h3>
+    {% elif not history %}
+        <h3>There is no history for room {{ room.name }}. Join <a href="{% url 'chat' room.pk %}">here</a>!</h3>
+    {% else %}
+        <br><br>
+        {% for msg in history %}
+            [{{ msg.datetime }}] {{ msg.username }}: {{ msg.message }}<br/>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

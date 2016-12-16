@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat ~ {{ room.name | default:'None' }}</title>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'chat.css' %}">
+</head>
+<body>
+    <a href="{% url 'profile' %}">Profile</a>
+    <a href="{% url 'user_logout' %}">Logout</a>
+
+    <br><br>
+
+    {% if not room %}
+        <h3>There is no such room</h3>
+    {% else %}
+        <h3>Room {{ room.name }}</h3>
+        Connected as <span id="username">{{ user.username }}</span>
+        <br>
+
+        <div id="chat">
+            {% for msg in history %}
+                [{{ msg.formatted_timestamp }}] {{ msg.username }}: {{ msg.message }}<br/>
+            {% endfor %}
+        </div>
+
+        <textarea id="post" title="Post here"></textarea>
+        <button id="send" type="button">Send</button>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="{% static 'reconnecting-websocket.min.js' %}"></script>
+        <script src="{% static 'chat.js' %}"></script>
+    {% endif %}
+
+</body>
+</html>

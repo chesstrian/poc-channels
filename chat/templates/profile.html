@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat ~ Profile</title>
+</head>
+<body>
+    Profile
+    <a href="{% url 'user_logout' %}">Logout</a>
+
+    <h2>Welcome <span style="color: cadetblue;">{{ user.username }}</span></h2>
+
+    <br>
+
+    {% for room in rooms %}
+        <strong>{{ room }}</strong>
+        <a href="{% url 'chat' room.pk %}">Join</a>
+        <a href="{% url 'history' room.pk %}">History</a>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+div#chat {
+    border: solid 1px lightgreen;
+    width: 800px;
+    height: 550px;
+    overflow-y: scroll;
+}
+
+textarea#post {
+    position: relative;
+    width: 740px;
+    height: 30px;
+}
+
+button#send {
+    position: absolute;
+    width: 56px;
+    height: 36px;
+}
+
+span#username {
+    color: blueviolet;
+}
